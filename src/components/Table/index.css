@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+
+#searchInput {
+  background-image: url("/css/searchicon.png");
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 33%;
+  float: right;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+#informationTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 0.1px solid #ddd;
+  font-size: 10px;
+  table-layout: fixed;
+  display: table;
+}
+image {
+  width: 10px;
+  height: 10px;
+}
+
+#informationTable th,
+#informationTable td {
+  text-align: left;
+  padding: 2px;
+}
+#informationTable th {
+  background-color: #d6d6d6;
+}
+
+#informationTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#informationTable tr.header,
+#informationTable tr:hover {
+  background-color: #f1f1f1;
+}
