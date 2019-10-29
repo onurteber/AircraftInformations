@@ -4,7 +4,6 @@ import "./index.css";
 import { fetchItems } from "../../store/actions/aircraftActions";
 import { Link } from "react-router-dom";
 import sort from "../assets/sort.png";
-import Map from "../Map/index";
 
 class Table extends React.Component {
   searchTable = () => {
