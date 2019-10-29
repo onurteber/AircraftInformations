@@ -1,15 +1,8 @@
 ## Quick Start
 
-```bash
 # Install dependencies
 npm install
 
-# Run node server localhost:8000
-node server
-
 # Serve on localhost:3000
-npm start
+npm run dev
 
-# Build for production
-npm run build
-```
