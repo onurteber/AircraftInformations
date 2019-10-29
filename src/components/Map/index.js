@@ -14,10 +14,6 @@ var icons = L.icon({
 });
 
 export class index extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     lat: 51.505,
     lng: -0.09,
@@ -36,23 +32,25 @@ export class index extends Component {
     ).addTo(map);
     setInterval(() => {
       let { states } = this.props.posts;
-      let arr = new Array();
-      let mark = new Array();
-      if (states != undefined) {
+      let arr = [];
+      let mark = [];
+      if (states !== undefined) {
         if (this.state.markers.length > 0) {
           mark = this.state.markers;
           mark.map(item => {
             try {
-              map.removeLayer(item);
+              return map.removeLayer(item);
             } catch (error) {
               console.log("Could not delete Marker. Error: " + error);
+              return "Could not delete Marker. Error: " + error;
             }
           });
         }
-        let markers = states.map((item, key) => {
+        states.map((item, key) => {
           key = L.marker([item[6], item[5]], { icon: icons }) // .bindPopup()
             .addTo(map);
           arr.push(key);
+          return key;
         });
         this.setState({ markers: arr });
       }
@@ -70,20 +68,28 @@ export class index extends Component {
     return (
       <div style={{ padding: "1%" }}>
         <div style={{ textAlign: "center", marginTop: "1%" }}>
-          <h2>{time == undefined ? "Yükleniyor..." : "TIME: " + time}</h2>
+          <h2>{time === undefined ? "Yükleniyor..." : "TIME: " + time}</h2>
         </div>
-        <div style={{ textAlign: "left", marginTop: "-40px" }}>
-          <button
-            style={{
-              borderTopLeftRadius: "25px",
-              borderBottomLeftRadius: "25px",
-              textDecoration: "none"
-            }}
-          >
-            <Link style={{ float: "right", textDecoration: "none" }} to="/">
+        <div
+          style={{
+            textAlign: "left",
+            marginTop: "-40px",
+            float: "left",
+            textDecoration: "none"
+          }}
+        >
+          <Link style={{}} to="/">
+            <button
+              style={{
+                borderTopLeftRadius: "25px",
+                borderBottomLeftRadius: "25px",
+                textDecoration: "none",
+                outline: "none"
+              }}
+            >
               Tablo Görünümüne Geç
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
         <div
           style={{ height: "86vh", marginTop: "1%", borderRadius: "20px" }}

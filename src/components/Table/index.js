@@ -4,6 +4,7 @@ import "./index.css";
 import { fetchItems } from "../../store/actions/aircraftActions";
 import { Link } from "react-router-dom";
 import sort from "../assets/sort.png";
+import Map from "../Map/index";
 
 class Table extends React.Component {
   searchTable = () => {
@@ -54,14 +55,14 @@ class Table extends React.Component {
         var cmpY = isNaN(parseInt(y.innerHTML))
           ? y.innerHTML.toLowerCase()
           : parseInt(y.innerHTML);
-        cmpX = cmpX == "-" ? 0 : cmpX;
-        cmpY = cmpY == "-" ? 0 : cmpY;
-        if (dir == "asc") {
+        cmpX = cmpX === "-" ? 0 : cmpX;
+        cmpY = cmpY === "-" ? 0 : cmpY;
+        if (dir === "asc") {
           if (cmpX > cmpY) {
             shouldSwitch = true;
             break;
           }
-        } else if (dir == "desc") {
+        } else if (dir === "desc") {
           if (cmpX < cmpY) {
             shouldSwitch = true;
             break;
@@ -73,7 +74,7 @@ class Table extends React.Component {
         switching = true;
         switchcount++;
       } else {
-        if (switchcount == 0 && dir == "asc") {
+        if (switchcount === 0 && dir === "asc") {
           dir = "desc";
           switching = true;
         }
@@ -150,21 +151,27 @@ class Table extends React.Component {
           <div style={{ width: "75%", marginLeft: "20%" }}>
             <h2 style={{ textAlign: "center" }}>Sivil Uçak Bilgileri</h2>
           </div>
-          <div style={{ width: "25%", textAlign: "right", marginTop: "20px" }}>
-            <button
-              style={{
-                borderTopRightRadius: "25px",
-                borderBottomRightRadius: "25px",
-                textDecoration: "none"
-              }}
-            >
-              <Link
-                style={{ float: "right", textDecoration: "none" }}
-                to="/map"
+          <div
+            style={{
+              width: "25%",
+              textAlign: "right",
+              marginTop: "20px",
+              marginRight: "7px"
+            }}
+          >
+            <Link style={{ float: "right", textDecoration: "none" }} to="/map">
+              <button
+                style={{
+                  borderTopRightRadius: "25px",
+                  borderBottomRightRadius: "25px",
+                  textDecoration: "none",
+                  outline: "none"
+                }}
+                onClick={this.goToMapPage}
               >
                 Harita Görünümüne Geç
-              </Link>
-            </button>
+              </button>
+            </Link>
           </div>
         </div>
         <input
@@ -173,7 +180,6 @@ class Table extends React.Component {
           id="searchInput"
           placeholder="Ara.."
           title="Ara..."
-          style={{ marginTop: "1%" }}
         ></input>
         <table id="informationTable">
           <thead>
@@ -181,7 +187,7 @@ class Table extends React.Component {
           </thead>
           <tbody>{menus}</tbody>
         </table>
-        {this.props.posts.time == undefined
+        {this.props.posts.time === undefined
           ? "Yükleniyor..."
           : "TIME: " + this.props.posts.time}
       </div>
